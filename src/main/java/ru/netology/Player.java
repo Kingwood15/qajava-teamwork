@@ -35,7 +35,7 @@ public class Player {
         if (playedTime.containsKey(game)) {
             playedTime.put(game, playedTime.get(game) + hours);
         } else {
-            playedTime.put(game, hours);
+            throw new RuntimeException("Игра: " + game.getTitle() + " не установлена в каталог игрока:" + this.name);
         }
         return playedTime.get(game);
     }
