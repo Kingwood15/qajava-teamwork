@@ -171,4 +171,53 @@ public class GameStoreTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void shouldGetSumPlayedTimeInEmptyGameStore() {
+
+        GameStore store = new GameStore();
+
+        int actual = store.getSumPlayedTime();
+        int expected = 0;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGetSumPlayedTimeAmongTwoGameStore1() {
+
+        GameStore store1 = new GameStore();
+        GameStore store2 = new GameStore();
+
+        store1.addPlayTime("Ivan", 2);
+        store1.addPlayTime("Sveta", 1);
+        store1.addPlayTime("Semen", 3);
+        store2.addPlayTime("Sergey", 5);
+        store2.addPlayTime("Andrey", 1);
+        store2.addPlayTime("Anya", 4);
+
+        int actual = store1.getSumPlayedTime();
+        int expected = 2 + 1 + 3;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGetSumPlayedTimeAmongTwoGameStore2() {
+
+        GameStore store1 = new GameStore();
+        GameStore store2 = new GameStore();
+
+        store1.addPlayTime("Ivan", 2);
+        store1.addPlayTime("Sveta", 1);
+        store1.addPlayTime("Semen", 3);
+        store2.addPlayTime("Sergey", 5);
+        store2.addPlayTime("Andrey", 1);
+        store2.addPlayTime("Anya", 4);
+
+        int actual = store2.getSumPlayedTime();
+        int expected = 5 + 1 + 4;
+
+        assertEquals(expected, actual);
+    }
 }
