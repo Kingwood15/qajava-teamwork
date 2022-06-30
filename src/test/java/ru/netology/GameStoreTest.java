@@ -126,6 +126,19 @@ public class GameStoreTest {
     }
 
     @Test
+    public void shouldGetMostPlayerForOneHourPlayer() {
+
+        GameStore store = new GameStore();
+
+        store.addPlayTime("Sveta", 1);
+
+        String actual = store.getMostPlayer();
+        String expected = "Sveta";
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldGetMostPlayerIfZeroPlayer() {
 
         GameStore store = new GameStore();
