@@ -61,7 +61,9 @@ public class Player {
         for (Game game : playedTime.keySet()) {
             if (game.getGenre().equals(genre)) {
                 if (result == null) {
-                    result = game;
+                    if (playedTime.get(game) != 0) {
+                        result = game;
+                    }
                 } else {
                     if (playedTime.get(game) > playedTime.get(result)) {
                         result = game;
