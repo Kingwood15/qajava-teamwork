@@ -105,8 +105,22 @@ public class PlayerTest {
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
         Player player = new Player("Petya");
         player.installGame(game);
-        int actual = player.play(game, 3) + player.play(game,4);
+        player.play(game,3);
+        int actual = player.play(game,4);
         int expected = 7;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReturnHoursIfPlayThreeTimes() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Player player = new Player("Petya");
+        player.installGame(game);
+        player.play(game,3);
+        player.play(game,4);
+        int actual = player.play(game,6);
+        int expected = 13;
         assertEquals(expected, actual);
     }
 
