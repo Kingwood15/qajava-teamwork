@@ -89,14 +89,24 @@ public class PlayerTest {
     }
 
     @Test
-    public void shouldReturnHours() {
+    public void shouldReturnHoursIfPlayOneTime() {
         GameStore store = new GameStore();
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
         Player player = new Player("Petya");
         player.installGame(game);
         int actual = player.play(game, 3);
-        ;
         int expected = 3;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReturnHoursIfPlayTwoTimes() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Player player = new Player("Petya");
+        player.installGame(game);
+        int actual = player.play(game, 3) + player.play(game,4);
+        int expected = 7;
         assertEquals(expected, actual);
     }
 
@@ -146,19 +156,4 @@ public class PlayerTest {
         Game actual = player.mostPlayerByGenre(game2.getGenre());
         assertEquals(null, actual);
     }
-
-//    @Test
-//    public void shouldReturnNullWhenMostPlayedGameByGenre1() {
-//        GameStore store = new GameStore();
-//        Game game1 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
-//        Game game2 = store.publishGame("Петька и Василий Иванович", "Квест");
-//        Game game3 = store.publishGame("Аллоды", "Аркады");
-//        Player player = new Player("Petya");
-//        player.installGame(game1);
-//        player.installGame(game3);
-//        player.play(game1, 3);
-//        player.play(game3, 2);
-//        Game actual = player.mostPlayerByGenre(game2.getGenre());
-//        assertEquals(null, actual);
-//    }
 }
